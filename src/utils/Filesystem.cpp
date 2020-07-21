@@ -17,7 +17,6 @@
  *
 ***/
 
-
 #include <fat.h>
 #include <dirent.h>
 #include <sys/unistd.h>
@@ -28,7 +27,6 @@
 #include "Filesystem.h"
 #include "Debug.h"
 
-
 void FileSystem::Init()
 {
     assert(fatInitDefault());
@@ -37,17 +35,17 @@ void FileSystem::Init()
         CreateDirectory(WORLD_PATH);
 }
 
-bool FileSystem::CreateDirectory(const std::string& directoryPath)
+bool FileSystem::CreateDirectory(const std::string &directoryPath)
 {
     if (!directoryPath.empty())
     {
-        return (mkdir(directoryPath.c_str(), ACCESSPERMS) == 0);
+        return (mkdir(directoryPath.c_str(), S_IRWXU | S_IRWXG | S_IRWXO) == 0);
     }
 
     return false;
 }
 
-bool FileSystem::DirectoryExist(const std::string& directoryPath)
+bool FileSystem::DirectoryExist(const std::string &directoryPath)
 {
     struct stat sb;
     return stat(directoryPath.c_str(), &sb) == 0 && S_ISDIR(sb.st_mode);

@@ -22,6 +22,7 @@
 
 #include "../blocks/BlockManager.h"
 #include "../../utils/Vector3.h"
+#include <iostream>
 
 #define CHUNK_MAP_CASH_X 5
 #define CHUNK_MAP_CASH_Y 5
